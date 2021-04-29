@@ -1,0 +1,12 @@
+library(tidyverse)
+
+csvs <- list.files(path = "../data", full.names = TRUE)
+df_unioned <- NULL
+for (csv in csvs){
+  print(csv)
+  df <- read_csv(csv)
+  if (is.null(df_unioned))
+    df_unioned <- df
+  else
+    df_unioned <- union(df_unioned, df)
+}
